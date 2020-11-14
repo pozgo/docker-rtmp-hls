@@ -1,11 +1,9 @@
 FROM alpine:latest as builder
 
-# Versions of nginx, rtmp-module and ffmpeg 
 ENV   NGINX_VERSION=1.19.4 \
       NGINX_RTMP_MODULE_VERSION=1.2.1 \
       FFMPEG_VERSION=4.3.1
 
-# Install dependencies
 RUN apk update  && \
   apk --no-cache add \
     bash \
@@ -101,7 +99,7 @@ RUN apk update  && \
 FROM polinux/supervisor:alpine 
 
 COPY --from=builder /stage.tgz /stage.tgz
-# Install dependencies
+
 RUN apk update  && \
   apk --no-cache add \
     bash \
@@ -124,4 +122,5 @@ RUN apk update  && \
   ln -sf /dev/stderr /var/log/nginx/error.log
 
 ADD container-files /
+
 EXPOSE 1935 8080

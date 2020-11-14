@@ -1,0 +1,43 @@
+version: 2
+jobs:
+  build&test:
+    machine: true
+    steps:
+      - checkout
+      - run: |
+          docker build -t polinux/rtmp-hls:${CIRCLE_SHA1:0:7} .
+          docker run -d \
+          -p 8080:8080 -p 1935:1935 \
+          --name rtmp \
+          polinux/rtmp-hls:${CIRCLE_SHA1:0:7}
+          while true; do if docker logs rtmp | grep "nginx entered RUNNING state"; then break; else sleep 1; fi done
+          curl -si -L http://127.0.0.1:8080 | grep "200 OK"
+  deploy:
+    machine: true
+    steps:
+      - checkout
+      - run: |
+          docker build -t polinux/rtmp-hls:${CIRCLE_SHA1:0:7} .
+          docker build -t polinux/rtmp-hls:latest .
+          echo "$DOCKER_HUB_PASS" | docker login --username "$DOCKER_HUB_USER" --password-stdin
+          docker push polinux/rtmp-hls:${CIRCLE_SHA1:0:7}
+          docker push polinux/rtmp-hls:latest
+workflows:
+  version: 2
+  build test deploy:
+    jobs:
+      - build&test:
+          filters:
+            branches:
+              only:
+                - main
+                - dev
+                - /update.*/
+                - /bugfix.*/
+      - deploy:
+          filters:
+            branches:
+              only:
+                - main
+          requires:
+            - build&test

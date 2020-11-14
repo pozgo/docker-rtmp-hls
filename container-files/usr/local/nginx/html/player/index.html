@@ -1,41 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>RTMP Live Streaming</title>
-    <title>Live Streaming</title>
-    <link href="https://unpkg.com/video.js/dist/video-js.css" rel="stylesheet">
-    <script src="https://unpkg.com/video.js/dist/video.js"></script>
-    <script src="https://unpkg.com/videojs-flash/dist/videojs-flash.min.js"></script>
-    <script src="https://unpkg.com/videojs-contrib-hls/dist/videojs-contrib-hls.js"></script>
-  </head>
-  <body>
-    <div style="width:800px; margin:0 auto; text-align: center;">
-      <h1>Player</h1>
-        <video 
-          id="my_video_1"
-          class="video-js vjs-default-skin vjs-big-play-centered"
-          controls preload="auto"
-          width="720"
-          poster="no-stream.gif"
-          data-setup='{"techOrder": ["html5","flash"]}'
-          style="width:800px; margin:0 auto; text-align: center;"
-          >
+
+<head>
+  <meta charset="UTF-8">
+  <title>RTMP Live Streaming</title>
+  <title>Live Streaming</title>
+  <link href="https://unpkg.com/video.js/dist/video-js.css" rel="stylesheet">
+  <script src="https://unpkg.com/video.js/dist/video.js"></script>
+  <script src="https://unpkg.com/videojs-flash/dist/videojs-flash.min.js"></script>
+  <script src="https://unpkg.com/videojs-contrib-hls/dist/videojs-contrib-hls.js"></script>
+</head>
+
+<body>
+  <div style="width:800px; margin:0 auto; text-align: center;">
+    <h1>Player</h1>
+    <video id="my_video_1" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" width="720"
+      poster="no-stream.gif" data-setup='{"techOrder": ["html5","flash"]}'
+      style="width:800px; margin:0 auto; text-align: center;">
       <source id="link" src="" type="rtmp/mp4">
     </video>
-    </div>
+  </div>
 
 
-    <div id="footer" style="width:800px; margin:0 auto; text-align: center;">
-      <br></br>
-      <font size="2">Polinux 2020</font>
-    </div>
-    <script type="text/javascript"> 
-      var link='';
-      var stream=location.search.substring(1)
-      var hostname='rtmp://'+location.hostname+':1935/live/'
-      var video_element=document.getElementById('link').src=hostname+stream;
-      console.log(video_element);
-    </script> 
-  </body>
+  <div id="footer" style="width:800px; margin:0 auto; text-align: center;">
+    <br></br>
+    <font size="2">Polinux 2020</font>
+  </div>
+  <script type="text/javascript">
+    var link = '';
+    var stream = location.search.substring(1)
+    var hostname = 'rtmp://' + location.hostname + ':1935/live/'
+    var video_element = document.getElementById('link').src = hostname + stream;
+    console.log(video_element);
+  </script>
+</body>
+
 </html>

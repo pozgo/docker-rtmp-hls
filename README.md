@@ -69,7 +69,10 @@ Go to Settings > Stream, choose the following settings:
 
 * **Using provided web player:** <br/>
 The provided demo player can access any stream key that was set before.
-	* To play RTMP content (requires Flash): `http://<server ip>:8080/player/?<stream-key>` 
+	* To play RTMP content (requires Flash): `http://<server ip>:8080/player/?<stream-key>`
+
+HLS player available at `http://<server ip>:8080/player/hls/?<stream-key>`  
+DASH player available at `http://<server ip>:8080/player/dash/?<stream-key>`
 
 ### Example
 

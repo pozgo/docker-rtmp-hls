@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>DASH Live Streaming</title>
+  <link href="https://vjs.zencdn.net/7.5.5/video-js.css" rel="stylesheet">
+  <script src="https://vjs.zencdn.net/7.5.5/video.js"></script>
+</head>
+
+<body>
+  <div style="width:800px; margin:0 auto; text-align: center;">
+    <h1>DASH Player</h1>
+  </div>
+  <div style="width:800px; margin:0 auto; text-align: center;"></div>
+  <video id="player" class="video-js vjs-default-skin vjs-big-play-centered" width="720" controls preload="auto"
+    poster="../images/no-stream.gif" data-setup='{"techOrder": ["html5","flash"]}'
+    style="width:800px; margin:0 auto; text-align: center;">
+    <source id="link" src="" type="application/dash+xml" />
+  </video>
+  </div>
+  <script>
+    var player = videojs('#player');
+  </script>
+  <br>
+  </br>
+  <div id="footer" style="width:800px; margin:0 auto; text-align: center;">
+    <font size="2">Polinux 2020</font>
+  </div>
+  <script type="text/javascript">
+    var link = '';
+    var stream = '/dash/' + location.search.substring(1) + '_src.mpd';
+    var video_element = document.getElementById('link').src = stream;
+  </script>
+</body>
+
+</html>
